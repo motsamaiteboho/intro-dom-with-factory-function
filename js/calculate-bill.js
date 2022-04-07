@@ -9,8 +9,7 @@ function calculateBillTotals() {
     }
 
     function makeCall() {
-        if (!hasReachedCriticaLevel())
-            totalCost += 2.75;
+        totalCost += 2.75;
     }
 
     function getTotalCost() {
@@ -18,23 +17,23 @@ function calculateBillTotals() {
     }
 
     function sendSms() {
-        if (!hasReachedCriticaLevel())
-            totalCost += 0.75
+        totalCost += 0.75
     }
-
-    function totalPhoneBill(lstBills)
-    {
-      var bill = lstBills.split(",");
-      for(var i = 0; i < bill.length; i++)
-      {
-        var billType = bill[i].trim();
-        if( billType == "sms"){
-            makeCall();
+    var temp = "";
+    function totalPhoneBill(lstBills) {
+        var bill = lstBills.split(",");
+        if (temp !== lstBills) {
+            for (var i = 0; i < bill.length; i++) {
+                var billType = bill[i].trim();
+                if (billType == "sms") {
+                    makeCall();
+                }
+                else if (billType == "call") {
+                    sendSms();
+                }
+            }
         }
-        else if (billType == "call"){
-            sendSms();
-        }
-      }
+        temp = lstBills;
     }
 
     function hasReachedCriticaLevel() {

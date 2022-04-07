@@ -19,8 +19,7 @@ function RadioBillTotal() {
     }
 
     function makeCall() {
-        if (!hasReachedCriticaLevel())
-            callCostTotal += 2.75;
+       callCostTotal += 2.75;
     }
 
     function getTotalCost() {
@@ -36,8 +35,7 @@ function RadioBillTotal() {
     }
 
     function sendSms() {
-        if (!hasReachedCriticaLevel())
-            smsCostTotal += 0.75
+        smsCostTotal += 0.75
     }
 
     function hasReachedCriticaLevel() {
