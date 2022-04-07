@@ -20,12 +20,25 @@ function updateCosts() {
     if (callCostSetting.value !== "")
         billWithSetting.setCallCost(parseFloat(callCostSetting.value));
     if (warningLevelSetting.value !== "") {
+        if ( billWithSetting.getWarningLevel() !== warningLevelSetting.value) {
+            if ( billWithSetting.getTotalCost() == warningLevelSetting.value) {
+                if(totalCostSet.classList.contains("danger"));
+                    totalCostSet.classList.add("warning");
+            }
+            else {
+                totalCostSet.classList.remove("danger");
+                totalCostSet.classList.remove("warning");
+            }
+
+        }
         billWithSetting.setWarningLevel(warningLevelSetting.value);
-        totalCostSet.classList.add(billWithSetting.totalClassName());
     }
     if (criticalLevelSetting.value !== "") {
-        billWithSetting.setCriticalLevel(criticalLevelSetting.value); 4
-        totalCostSet.classList.add(billWithSetting.totalClassName());
+        if (criticalLevelSetting.value >  billWithSetting.getCriticalLevel() && billWithSetting.getCriticalLevel() !== 0) {
+            if (totalCostSet.classList.contains("danger"))
+                totalCostSet.classList.add("warning");
+        }
+        billWithSetting.setCriticalLevel(criticalLevelSetting.value); 
     }
 }
 updateSettings.addEventListener('click', updateCosts);

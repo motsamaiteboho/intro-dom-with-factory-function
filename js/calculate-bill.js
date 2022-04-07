@@ -19,21 +19,20 @@ function calculateBillTotals() {
     function sendSms() {
         totalCost += 0.75
     }
-    var temp = "";
+
     function totalPhoneBill(lstBills) {
+        totalCost = 0;
         var bill = lstBills.split(",");
-        if (temp !== lstBills) {
-            for (var i = 0; i < bill.length; i++) {
-                var billType = bill[i].trim();
-                if (billType == "sms") {
-                    makeCall();
-                }
-                else if (billType == "call") {
-                    sendSms();
-                }
+
+        for (var i = 0; i < bill.length; i++) {
+            var billType = bill[i].trim();
+            if (billType == "sms") {
+                makeCall();
+            }
+            else if (billType == "call") {
+                sendSms();
             }
         }
-        temp = lstBills;
     }
 
     function hasReachedCriticaLevel() {
